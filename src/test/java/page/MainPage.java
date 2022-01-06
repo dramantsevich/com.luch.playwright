@@ -1,6 +1,5 @@
 package page;
 
-import com.microsoft.playwright.JSHandle;
 import com.microsoft.playwright.Page;
 import model.User;
 
