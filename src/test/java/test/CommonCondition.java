@@ -2,9 +2,7 @@ package test;
 
 import com.microsoft.playwright.*;
 import org.testng.annotations.*;
-import page.CartPage;
-import page.MainPage;
-import page.ProductPage;
+import page.*;
 
 public class CommonCondition {
     private static Playwright playwright;
@@ -41,15 +39,6 @@ public class CommonCondition {
         return page;
     }
 
-    protected MainPage getMainPage(){
-        return new MainPage(getPage());
-    }
+    protected MainPage getMainPage() { return new MainPage(getPage()); }
 
-    protected ProductPage getProductPage(){
-        return new ProductPage(getPage());
-    }
-
-    protected CartPage getCartPage(){
-        return new CartPage(getPage());
-    }
 }
