@@ -17,40 +17,32 @@ public class MainPage {
         this.page = page;
     }
 
-    public MainPage clickWatchesToOneClickOrder(int index){
+    public void clickWatchesToOneClickOrder(int index){
         page.click(oneClickOrderButton + "["+ index +"]");
-
-        return this;
     }
 
-    public MainPage inputFieldsInOneClickOrderPopup(User user){
+    public void inputFieldsInOneClickOrderPopup(User user){
         page.fill(clientNameInput, user.getUsername());
         page.fill(clientPhoneInput, user.getPhone());
         page.fill(clientEmailInput, user.getEmail());
-
-        return this;
     }
 
-    public MainPage inputClientPhoneField(User user){
+    public void inputClientPhoneField(User user){
         page.fill(clientPhoneInput, user.getPhone());
-
-        return this;
     }
 
-    public MainPage inputClientNameField(User user){
+    public void inputClientNameField(User user){
         page.fill(clientNameInput, user.getUsername());
-
-        return this;
     }
 
-    public MainPage submitFormOneClickOrder() {
+    public void submitFormOneClickOrder() {
         page.click(submitOneClickOrderFormButton);
-
-        return this;
     }
 
     public String getFormOneClickOrderSuccessfullMessage(){
         return page.innerText(formOneClickOrderSuccessfullMessage);
     }
+
+
 
 }

@@ -8,39 +8,37 @@ import service.UserCreator;
 import static org.testng.Assert.*;
 
 public class OneClickOrderTests extends CommonCondition {
-    MainPage mainPage = getMainPage();
-
     @Test
     public void checkCorrectOneClickOrder(){
         User testUser = UserCreator.userForOnceClickOrder();
         String expectedMessage = "Your message was sent successfully";
 
+        openPageAndClickToWatchesOneClickOrder();
+        getMainPage().inputFieldsInOneClickOrderPopup(testUser);
+        getMainPage().submitFormOneClickOrder();
 
-        mainPage = openPageAndClickToWatchesOneClickOrder()
-                .inputFieldsInOneClickOrderPopup(testUser)
-                .submitFormOneClickOrder();
-
-        assertEquals(expectedMessage, mainPage.getFormOneClickOrderSuccessfullMessage());
+        assertEquals(expectedMessage, getMainPage().getFormOneClickOrderSuccessfullMessage());
     }
 
     @Test
     public void checkValidationErrorMessageIfNameIsEmpty(){
         User testUserWithoutName = UserCreator.userForOneClickOrderWithoutName();
-        mainPage = openPageAndClickToWatchesOneClickOrder()
-                .inputClientPhoneField(testUserWithoutName)
-                .submitFormOneClickOrder();
+
+        openPageAndClickToWatchesOneClickOrder();
+        getMainPage().inputClientPhoneField(testUserWithoutName);
+        getMainPage().submitFormOneClickOrder();
     }
 
     @Test
     public void checkValidationErrorMessageIfPhoneIsEmpty(){
         User testUserWithoutName = UserCreator.userForOneClickOrderWithoutPhone();
-        mainPage = openPageAndClickToWatchesOneClickOrder()
-                .inputClientNameField(testUserWithoutName)
-                .submitFormOneClickOrder();
+
+        openPageAndClickToWatchesOneClickOrder();
+        getMainPage().inputClientNameField(testUserWithoutName);
+        getMainPage().submitFormOneClickOrder();
     }
 
-    private MainPage openPageAndClickToWatchesOneClickOrder() {
-        return getMainPage()
-                .clickWatchesToOneClickOrder(1);
+    private void openPageAndClickToWatchesOneClickOrder() {
+        getMainPage().clickWatchesToOneClickOrder(1);
     }
 }

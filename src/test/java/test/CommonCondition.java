@@ -4,7 +4,7 @@ import com.microsoft.playwright.*;
 import org.testng.annotations.*;
 import page.*;
 
-public class CommonCondition {
+abstract class CommonCondition {
     private static Playwright playwright;
     private static Browser browser;
     private Page page;
