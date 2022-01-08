@@ -41,4 +41,9 @@ abstract class CommonCondition {
 
     protected MainPage getMainPage() { return new MainPage(getPage()); }
 
+    protected ProductPage getProductPage() { return new ProductPage(getPage()); }
+
+    protected Header getHeader() { return new Header(getPage()); }
+
+    protected CartPage getCartPage() { return new CartPage(getPage()); }
 }
