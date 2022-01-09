@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 public class Header {
     private final Page page;
 
-    private String iconProductsInCartCount = "//div[@class='shopping-cart !']/div[@class='count']";
+    private String iconProductsInCartCount = ".shopping-cart__link >> .count";
 
     public Header(Page page){ this.page = page; }
 

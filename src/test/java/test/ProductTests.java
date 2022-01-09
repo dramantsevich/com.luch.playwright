@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 import service.ProductCreator;
 
 
-public class ProductTests extends CommonCondition{
+public class ProductTests extends PreConditionsForOrderTests{
     public static final String PRODUCT_FIRST_URL = "/en/kollektsii/vinil/95480726/";
 
     @Test
@@ -21,7 +21,7 @@ public class ProductTests extends CommonCondition{
     }
 
     @Test
-    public void checkCorrectAddMoreProductQuantity() throws Throwable {
+    public void checkCorrectAddMoreProductQuantity() {
         Product product = ProductCreator.product(PRODUCT_FIRST_URL);
 
         preConditionProductInCart(product);
@@ -40,14 +40,5 @@ public class ProductTests extends CommonCondition{
         getCartPage().clickDeleteButtonByProduct(product);
 
         assertThat(getCartPage().getEmptyCartMessage()).isEqualTo(expectedMessage);
-    }
-
-    private void preConditionProductInCart(Product product){
-        getProductPage().openProductPage(product.getProductURL());
-        getProductPage().addToCart(product);
-
-        assertThat(getHeader().getIconProductInCartCount()).isGreaterThan(0);
-
-        getProductPage().goToCartPage();
     }
 }
