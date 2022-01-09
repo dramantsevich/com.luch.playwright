@@ -20,7 +20,7 @@ public abstract class CommonCondition {
     @BeforeMethod
     void setUp(){
         BrowserContext context = browser.newContext(
-                new Browser.NewContextOptions().setViewportSize(1900,1000));
+                new Browser.NewContextOptions().setViewportSize(1920,1080));
         page = context.newPage();
         page.navigate("https://luch.by/en/");
     }

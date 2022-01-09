@@ -1,9 +1,11 @@
 package page;
 
+import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
 import model.Order;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderPage {
@@ -33,9 +35,21 @@ public class OrderPage {
         clickCityFromDropDownList(user.getCity());
     }
 
-    public void inputFieldsWithoutNameInOrder(User user){
-        page.type(clientSurnameInput, user.getUsername(), new Page.TypeOptions().setDelay(100));
+    public void inputFieldsWithoutSurnameInOrder(User user){
+        page.type(clientNameInput, user.getUsername(), new Page.TypeOptions().setDelay(100));
+        page.click(clientPhoneNumberInput);
+        page.waitForTimeout(500);
         page.type(clientPhoneNumberInput, user.getPhone(), new Page.TypeOptions().setDelay(100));
+        page.type(clientEmailInput, user.getEmail(), new Page.TypeOptions().setDelay(100));
+        page.click(clientCityInput);
+        page.type(clientCityInput, user.getCity(), new Page.TypeOptions().setDelay(100));
+        clickCityFromDropDownList(user.getCity());
+    }
+
+    public void inputFieldsWithoutNameAndSurnameInOrder(User user){
+        page.type(clientPhoneNumberInput, user.getPhone(), new Page.TypeOptions().setDelay(100));
+        page.click(clientEmailInput);
+        page.waitForTimeout(500);
         page.type(clientEmailInput, user.getEmail(), new Page.TypeOptions().setDelay(100));
         page.click(clientCityInput);
         page.type(clientCityInput, user.getCity(), new Page.TypeOptions().setDelay(100));
@@ -60,6 +74,7 @@ public class OrderPage {
 
     public void goToPaymentPage() {
         page.click(goToPaymentPageButton);
+        page.waitForTimeout(500);
     }
 
     public void goToOrderPage(){
@@ -67,7 +82,21 @@ public class OrderPage {
         page.waitForSelector(orderFormContent);
     }
 
-    public List getErrorMessageList(){
+    public List<String> getStringErrorMessageList(){
+        List<String> errorMessages = new ArrayList<>();
+
+        page.waitForSelector(errorMessageList);
+
+        for(ElementHandle el : page.querySelectorAll(errorMessageList)){
+            errorMessages.add(el.innerText());
+        }
+
+        return errorMessages;
+    }
+
+    public List getErrorMessageList() {
+        page.waitForSelector(errorMessageList);
+
         return page.querySelectorAll(errorMessageList);
     }
 
