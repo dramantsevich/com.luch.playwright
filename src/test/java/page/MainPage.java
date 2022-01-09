@@ -6,7 +6,7 @@ import model.User;
 public class MainPage {
     private final Page page;
 
-    private String oneClickOrderButton = "(//div[@class='owl-item active']//span[@class='oneclick-btn _big _js-b-pop-oneclick'])";
+    private String oneClickOrderButton = "//div[@class='owl-item active']//span[@class='oneclick-btn _big _js-b-pop-oneclick']";
     private String clientNameInput = "input[name=\"form_text_38\"]";
     private String clientPhoneInput = "input[name=\"form_text_39\"]";
     private String clientEmailInput = "[placeholder=\"mail@domen.com\"]";
@@ -42,7 +42,4 @@ public class MainPage {
     public String getFormOneClickOrderSuccessfullMessage(){
         return page.innerText(formOneClickOrderSuccessfullMessage);
     }
-
-
-
 }

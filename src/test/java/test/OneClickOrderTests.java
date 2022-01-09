@@ -2,7 +2,6 @@ package test;
 
 import model.User;
 import org.testng.annotations.Test;
-import page.MainPage;
 import service.UserCreator;
 
 import static org.testng.Assert.*;
