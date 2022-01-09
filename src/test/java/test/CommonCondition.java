@@ -4,7 +4,7 @@ import com.microsoft.playwright.*;
 import org.testng.annotations.*;
 import page.*;
 
-abstract class CommonCondition {
+public abstract class CommonCondition {
     private static Playwright playwright;
     private static Browser browser;
     private Page page;
@@ -46,4 +46,8 @@ abstract class CommonCondition {
     protected Header getHeader() { return new Header(getPage()); }
 
     protected CartPage getCartPage() { return new CartPage(getPage()); }
+
+    protected OrderPage getOrderPage() { return new OrderPage(getPage()); }
+
+    protected PaymentPage getPaymentPage() { return new PaymentPage(getPage()); }
 }
