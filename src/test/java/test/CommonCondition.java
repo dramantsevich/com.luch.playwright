@@ -56,4 +56,6 @@ public abstract class CommonCondition {
     protected CatalogAccessoriesPage getCatalogAccessoriesPage() { return new CatalogAccessoriesPage(getPage()); }
 
     protected CatalogWatchesPage getCatalogWatchesPage() { return new CatalogWatchesPage(getPage()); }
+
+    protected SearchPage getSearchPage() { return new SearchPage(getPage()); }
 }

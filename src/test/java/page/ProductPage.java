@@ -22,6 +22,8 @@ public class ProductPage {
         page.navigate("https://luch.by" + urlPart);
     }
 
+    public String getCurrentUrl(){ return page.url(); }
+
     public Product setPriceProduct(Product product, int price){
         product.setPrice(price);
         product.setCount(product.getCount() + 1);
