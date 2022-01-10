@@ -2,10 +2,11 @@ package page;
 
 import com.microsoft.playwright.Page;
 import model.Product;
+import service.GetListProducts;
 
 import java.util.List;
 
-public class CatalogAccessoriesPage extends CatalogPage{
+public class CatalogAccessoriesPage extends CatalogPage implements GetListProducts {
     private final Page page;
     private final String BASE_URL = "https://luch.by/en/accessories/";
 
