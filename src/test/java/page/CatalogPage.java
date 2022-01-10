@@ -18,6 +18,7 @@ public class CatalogPage {
     private String itemList = ".item";
     private String itemNameList = "//a/div/div/div[@class='name']";
     private String itemPriceList = "//a/div/div/div/div/div[@class='price']/span";
+    private String itemArticleList = "//a/div/div/div[@class='article']";
     private String moreInfoButton = "text=More info";
 
     public CatalogPage(Page page) { this.page = page; }
@@ -45,6 +46,13 @@ public class CatalogPage {
     protected Product setProductName(Product product, int index){
         List<ElementHandle> listName = page.querySelectorAll(itemNameList);
         product.setName(listName.get(index).innerText());
+
+        return product;
+    }
+
+    protected Product setProductArticle(Product product, int index){
+        List<ElementHandle> listArticle = page.querySelectorAll(itemArticleList);
+        product.setArticle(Integer.parseInt(listArticle.get(index).innerText()));
 
         return product;
     }
