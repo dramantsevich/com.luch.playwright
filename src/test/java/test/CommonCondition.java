@@ -50,4 +50,8 @@ public abstract class CommonCondition {
     protected OrderPage getOrderPage() { return new OrderPage(getPage()); }
 
     protected PaymentPage getPaymentPage() { return new PaymentPage(getPage()); }
+
+    protected CatalogPage getCatalogPage() { return new CatalogPage(getPage()); }
+
+    protected CatalogAccessoriesPage getCatalogAccessoriesPage() { return new CatalogAccessoriesPage(getPage()); }
 }

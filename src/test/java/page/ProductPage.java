@@ -9,6 +9,8 @@ public class ProductPage {
     private String productPrice = "[itemprop='price']";
     private String addProductToOrderButton = "text=Add to cart";
     private String checkoutButton = "a:has-text('Checkout')";
+    private String productType = "//div[@class='prop-title' and contains(text(),'Product type')]/following-sibling::div[@class='prop-value']/a";
+    private String productColor = "//div[@class='prop-title' and contains(text(),'Colour')]/following-sibling::div[@class='prop-value']/a";
 
     public ProductPage(Page page){
         this.page = page;
@@ -36,5 +38,13 @@ public class ProductPage {
         page.click(checkoutButton);
 
         return new CartPage(page);
+    }
+
+    public String getProductType() {
+        return page.innerText(productType);
+    }
+
+    public String getProductColor() {
+        return page.innerText(productColor);
     }
 }
