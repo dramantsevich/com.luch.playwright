@@ -11,6 +11,8 @@ public class ProductPage {
     private String checkoutButton = "a:has-text('Checkout')";
     private String productType = "//div[@class='prop-title' and contains(text(),'Product type')]/following-sibling::div[@class='prop-value']/a";
     private String productColor = "//div[@class='prop-title' and contains(text(),'Colour')]/following-sibling::div[@class='prop-value']/a";
+    private String productGenderType = "//div[@class='prop-title' and contains(text(),'Type')]/following-sibling::div[@class='prop-value']/a";
+    private String productMovementType = "//div[@class='prop-title' and contains(text(),'Movement')]/following-sibling::div[@class='prop-value']/a";
 
     public ProductPage(Page page){
         this.page = page;
@@ -47,4 +49,8 @@ public class ProductPage {
     public String getProductColor() {
         return page.innerText(productColor);
     }
+
+    public String getProductGender() { return page.innerText(productGenderType); }
+
+    public String getProductMovementType() { return page.innerText(productMovementType); }
 }
