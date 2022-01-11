@@ -1,38 +1,67 @@
 package test;
 
 import com.microsoft.playwright.*;
+import model.Browsers;
 import org.testng.annotations.*;
 import page.*;
 
-public abstract class CommonCondition {
-    private static Playwright playwright;
-    private static Browser browser;
-    private Page page;
+import static model.Browsers.CHROME;
+
+public class CommonCondition {
+    Playwright playwright;
+    Browser browser;
+    Page page;
+    BrowserContext context;
+    protected static String BROWSER = System.getProperty("browser", CHROME.name());
 
     @BeforeClass
-    static void setUpClass() {
-        playwright = Playwright.create();
-        BrowserType browserType = playwright.chromium();
-        browser = browserType.launch(
-                new BrowserType.LaunchOptions().setHeadless(false));
+    void setUpClass() {
+        if(System.getProperty("browser") != null){
+            BROWSER = Browsers.valueOf(System.getProperty("browser").toUpperCase()).name();
+        }
+        switch (BROWSER) {
+            case "CHROME": {
+                playwright = Playwright.create();
+                BrowserType browserType = playwright.chromium();
+                browser = browserType.launch(
+                        new BrowserType.LaunchOptions().setHeadless(false));
+                break;
+            }
+            case "FIREFOX": {
+                playwright = Playwright.create();
+                BrowserType browserType = playwright.firefox();
+                browser = browserType.launch(
+                        new BrowserType.LaunchOptions().setHeadless(false));
+                break;
+            }
+            case "EDGE": {
+                playwright = Playwright.create();
+                BrowserType browserType = playwright.chromium();
+                browser = browserType.launch(
+                        new BrowserType.LaunchOptions().setHeadless(false).setChannel("msedge"));
+                break;
+            }
+            default:
+                throw new IllegalArgumentException(System.getProperty("browser"));
+        }
     }
 
     @BeforeMethod
     void setUp(){
-        BrowserContext context = browser.newContext(
+        context = browser.newContext(
                 new Browser.NewContextOptions().setViewportSize(1920,1080));
         page = context.newPage();
         page.navigate("https://luch.by/en/");
     }
 
     @AfterClass
-    static void tearDownClass(){
+    void tearDownClass(){
         playwright.close();
     }
 
     @AfterMethod
     void tearDown(){
-        page.context().close();
+        context.close();
     }
 
     protected Page getPage(){
