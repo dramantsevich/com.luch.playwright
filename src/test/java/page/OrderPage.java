@@ -18,7 +18,7 @@ public class OrderPage {
     private String clientCityInput = "input[class='bx-ui-sls-fake']";
     private String orderButton = "[class=' button _big _uppercase']";
     private String errorMessageList = "//p/font[@class='errortext']";
-    private String errorMessage = "//p/font[@class='errortext']";
+    private String errorMessage = "//div/p/font[@class='errortext']";
     private String orderFormContent = "#order_form_content";
     private String goToPaymentPageButton = "#ORDER_CONFIRM_BUTTON";
 
