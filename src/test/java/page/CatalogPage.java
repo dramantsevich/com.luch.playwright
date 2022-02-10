@@ -27,14 +27,14 @@ public class CatalogPage {
         page.click(sortButton);
     }
 
-    public void clickSortByName(Sort.SortCases sortName){
+    public void clickSortByName(Sort.SortCases sortName) {
         page.click("a:has-text('" + sortName.getValue() + "')");
     }
 
-    protected List<Product> createListProducts(){
+    protected List<Product> createListProducts() {
         List<Product> productsList = new ArrayList<>();
 
-        for(ElementHandle el : page.querySelectorAll(itemList)){
+        for(ElementHandle el : page.querySelectorAll(itemList)) {
             Product product = ProductCreator.productFromCatalogPage();
 
             productsList.add(product);
@@ -43,47 +43,44 @@ public class CatalogPage {
         return productsList;
     }
 
-    protected Product setProductName(Product product, int index){
+    protected Product setProductName(Product product, int index) {
         List<ElementHandle> listName = page.querySelectorAll(itemNameList);
         product.setName(listName.get(index).innerText());
 
         return product;
     }
 
-    protected Product setProductArticle(Product product, int index){
+    protected Product setProductArticle(Product product, int index) {
         List<ElementHandle> listArticle = page.querySelectorAll(itemArticleList);
         product.setArticle(Integer.parseInt(listArticle.get(index).innerText()));
 
         return product;
     }
 
-    protected Product setProductPrice(Product product, int index){
+    protected Product setProductPrice(Product product, int index) {
         List<ElementHandle> listPrice = page.querySelectorAll(itemPriceList);
         String price = listPrice.get(index).innerText().replaceAll("\\s+","");
 
         Pattern pattern = Pattern.compile("[^mr][\\d]+");
         Matcher matcher = pattern.matcher(price);
 
-        if(matcher.find()){
+        if(matcher.find()) {
             int start = matcher.start();
             int end = matcher.end();
 
             int itemPrice = Integer.parseInt(price.substring(start, end).trim());
             product.setPrice(itemPrice);
+        }
 
-            return product;
-        }
-        else{
-            return product;
-        }
+        return product;
     }
 
-    public void ClickFilterByName(String filterName){
+    public void ClickFilterByName(String filterName) {
         page.click("label:has-text('" + filterName + "')");
         page.waitForTimeout(750);
     }
 
-    public void clickMoreInfoOfProduct(){
+    public void clickMoreInfoOfProduct() {
         page.click(moreInfoButton);
     }
 }

@@ -27,7 +27,7 @@ public class OrderNegativeTests extends PreConditionsForOrderTests{
     }
 
     @Test
-    public void checkNotEnteredSurnameFieldOnOrderedProduct(){
+    public void checkNotEnteredSurnameFieldOnOrderedProduct() {
         User testUser = UserCreator.userForOrderPage();
         Product product = ProductCreator.product(PRODUCT_FIRST_URL);
         String expectedError = "Фамилия this field is required";

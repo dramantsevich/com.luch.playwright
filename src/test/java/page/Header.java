@@ -7,9 +7,9 @@ public class Header {
 
     private String iconProductsInCartCount = ".shopping-cart__link >> .count";
 
-    public Header(Page page){ this.page = page; }
+    public Header(Page page) { this.page = page; }
 
-    public int getIconProductInCartCount(){
+    public int getIconProductInCartCount() {
         return Integer.parseInt(page.innerText(iconProductsInCartCount));
     }
 }

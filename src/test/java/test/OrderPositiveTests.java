@@ -13,7 +13,7 @@ public class OrderPositiveTests extends PreConditionsForOrderTests {
     public static final String PRODUCT_FIRST_URL = "/en/kollektsii/vinil/95480726/";
 
     @Test
-    public void checkCorrectlyOrderedProduct(){
+    public void checkCorrectlyOrderedProduct() {
         Product product = ProductCreator.product(PRODUCT_FIRST_URL);
         User testUser = UserCreator.userForOrderPage();
         String expectedMessage = "Order complete";

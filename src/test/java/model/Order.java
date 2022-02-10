@@ -1,12 +1,12 @@
 package model;
 
 public class Order {
-    public enum DeliveryService{
+    public enum DeliveryService {
         BY_POST("By post in Belarus"),
         PERSONAL_DELIVERY("Personal delivery Minsk (Free of charge)"),
         PICKUP("Pickup in Minsk");
 
-        private String value;
+        private final String value;
 
         DeliveryService(String value){
             this.value = value;
@@ -17,13 +17,13 @@ public class Order {
         }
     }
 
-    public enum PaymentSystem{
+    public enum PaymentSystem {
         CREDIT_CART_AND_APPLE_PAY("Apple Pay"),
         ERIP("SSIS (ERIP)");
 
-        private String value;
+        private final String value;
 
-        PaymentSystem(String value){
+        PaymentSystem(String value) {
             this.value = value;
         }
 

@@ -25,7 +25,7 @@ public class OrderPage {
     public OrderPage(Page page){ this.page = page; }
 
 
-    public void inputAllFieldsInOrder(User user){
+    public void inputAllFieldsInOrder(User user) {
         page.type(clientNameInput, user.getUsername(), new Page.TypeOptions().setDelay(100));
         page.type(clientSurnameInput, user.getUsername(), new Page.TypeOptions().setDelay(100));
         page.type(clientPhoneNumberInput, user.getPhone(), new Page.TypeOptions().setDelay(100));
@@ -35,7 +35,7 @@ public class OrderPage {
         clickCityFromDropDownList(user.getCity());
     }
 
-    public void inputFieldsWithoutSurnameInOrder(User user){
+    public void inputFieldsWithoutSurnameInOrder(User user) {
         page.type(clientNameInput, user.getUsername(), new Page.TypeOptions().setDelay(100));
         page.click(clientPhoneNumberInput);
         page.waitForTimeout(500);
@@ -46,7 +46,7 @@ public class OrderPage {
         clickCityFromDropDownList(user.getCity());
     }
 
-    public void inputFieldsWithoutNameAndSurnameInOrder(User user){
+    public void inputFieldsWithoutNameAndSurnameInOrder(User user) {
         page.type(clientPhoneNumberInput, user.getPhone(), new Page.TypeOptions().setDelay(100));
         page.click(clientEmailInput);
         page.waitForTimeout(500);
@@ -56,7 +56,7 @@ public class OrderPage {
         clickCityFromDropDownList(user.getCity());
     }
 
-    private void clickCityFromDropDownList(String city){
+    private void clickCityFromDropDownList(String city) {
         page.click("//div[contains(@class,'dropdown-item bx-ui-sls-variant bx-ui-sls-variant-active')]/span[contains(text(),'"+ city +"')]");
         page.waitForTimeout(500);
     }
@@ -66,7 +66,7 @@ public class OrderPage {
         page.isChecked("//div[contains(text(),'"+ deliveryService.getValue() +"')]//ancestor::div[@class='input radio']/input");
     }
 
-    public void choosePaymentSystem(Order.PaymentSystem paymentSystem){
+    public void choosePaymentSystem(Order.PaymentSystem paymentSystem) {
         page.check("//div[contains(text(),'"+ paymentSystem.getValue() +"')]//ancestor::div[@class='input radio']/input");
         page.isChecked("//div[contains(text(),'"+ paymentSystem.getValue() +"')]//ancestor::div[@class='input radio']/input");
         page.waitForTimeout(500);
@@ -77,17 +77,17 @@ public class OrderPage {
         page.waitForTimeout(500);
     }
 
-    public void goToOrderPage(){
+    public void goToOrderPage() {
         page.click(orderButton);
         page.waitForSelector(orderFormContent);
     }
 
-    public List<String> getStringErrorMessageList(){
+    public List<String> getStringErrorMessageList() {
         List<String> errorMessages = new ArrayList<>();
 
         page.waitForSelector(errorMessageList);
 
-        for(ElementHandle el : page.querySelectorAll(errorMessageList)){
+        for(ElementHandle el : page.querySelectorAll(errorMessageList)) {
             errorMessages.add(el.innerText());
         }
 

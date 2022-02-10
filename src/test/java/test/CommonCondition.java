@@ -16,7 +16,7 @@ public class CommonCondition {
 
     @BeforeClass
     void setUpClass() {
-        if(System.getProperty("browser") != null){
+        if(System.getProperty("browser") != null) {
             BROWSER = Browsers.valueOf(System.getProperty("browser").toUpperCase()).name();
         }
         switch (BROWSER) {
@@ -47,7 +47,7 @@ public class CommonCondition {
     }
 
     @BeforeMethod
-    void setUp(){
+    void setUp() {
         context = browser.newContext(
                 new Browser.NewContextOptions().setViewportSize(1920,1080));
         page = context.newPage();
@@ -55,36 +55,56 @@ public class CommonCondition {
     }
 
     @AfterClass
-    void tearDownClass(){
+    void tearDownClass() {
         playwright.close();
     }
 
     @AfterMethod
-    void tearDown(){
+    void tearDown() {
         context.close();
     }
 
-    protected Page getPage(){
+    protected Page getPage() {
         return page;
     }
 
-    protected MainPage getMainPage() { return new MainPage(getPage()); }
+    protected MainPage getMainPage() {
+        return new MainPage(getPage());
+    }
 
-    protected ProductPage getProductPage() { return new ProductPage(getPage()); }
+    protected ProductPage getProductPage() {
+        return new ProductPage(getPage());
+    }
 
-    protected Header getHeader() { return new Header(getPage()); }
+    protected Header getHeader() {
+        return new Header(getPage());
+    }
 
-    protected CartPage getCartPage() { return new CartPage(getPage()); }
+    protected CartPage getCartPage() {
+        return new CartPage(getPage());
+    }
 
-    protected OrderPage getOrderPage() { return new OrderPage(getPage()); }
+    protected OrderPage getOrderPage() {
+        return new OrderPage(getPage());
+    }
 
-    protected PaymentPage getPaymentPage() { return new PaymentPage(getPage()); }
+    protected PaymentPage getPaymentPage() {
+        return new PaymentPage(getPage());
+    }
 
-    protected CatalogPage getCatalogPage() { return new CatalogPage(getPage()); }
+    protected CatalogPage getCatalogPage() {
+        return new CatalogPage(getPage());
+    }
 
-    protected CatalogAccessoriesPage getCatalogAccessoriesPage() { return new CatalogAccessoriesPage(getPage()); }
+    protected CatalogAccessoriesPage getCatalogAccessoriesPage() {
+        return new CatalogAccessoriesPage(getPage());
+    }
 
-    protected CatalogWatchesPage getCatalogWatchesPage() { return new CatalogWatchesPage(getPage()); }
+    protected CatalogWatchesPage getCatalogWatchesPage() {
+        return new CatalogWatchesPage(getPage());
+    }
 
-    protected SearchPage getSearchPage() { return new SearchPage(getPage()); }
+    protected SearchPage getSearchPage() {
+        return new SearchPage(getPage());
+    }
 }

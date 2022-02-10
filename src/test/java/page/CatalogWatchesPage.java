@@ -35,7 +35,7 @@ public class CatalogWatchesPage extends CatalogPage implements GetListProducts {
         List<Product> productsList = createListProducts();
         int index = 0;
 
-        for(Product product : productsList){
+        for(Product product : productsList) {
             setProductName(product, index);
             setProductArticle(product, index);
             setProductPrice(product, index);

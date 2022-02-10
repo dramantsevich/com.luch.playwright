@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 import service.ProductCreator;
 
 
-public class ProductTests extends PreConditionsForOrderTests{
+public class ProductTests extends PreConditionsForOrderTests {
     public static final String PRODUCT_FIRST_URL = "/en/kollektsii/vinil/95480726/";
 
     @Test

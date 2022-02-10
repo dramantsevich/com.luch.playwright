@@ -13,25 +13,25 @@ public class MainPage {
     private String submitOneClickOrderFormButton = "text=Send form";
     private String formOneClickOrderSuccessfullMessage = "text=Your message was sent successfully";
 
-    public MainPage(Page page){
+    public MainPage(Page page) {
         this.page = page;
     }
 
-    public void clickWatchesToOneClickOrder(int index){
+    public void clickWatchesToOneClickOrder(int index) {
         page.click(oneClickOrderButton + "["+ index +"]");
     }
 
-    public void inputFieldsInOneClickOrderPopup(User user){
+    public void inputFieldsInOneClickOrderPopup(User user) {
         page.fill(clientNameInput, user.getUsername());
         page.fill(clientPhoneInput, user.getPhone());
         page.fill(clientEmailInput, user.getEmail());
     }
 
-    public void inputClientPhoneField(User user){
+    public void inputClientPhoneField(User user) {
         page.fill(clientPhoneInput, user.getPhone());
     }
 
-    public void inputClientNameField(User user){
+    public void inputClientNameField(User user) {
         page.fill(clientNameInput, user.getUsername());
     }
 
@@ -39,7 +39,7 @@ public class MainPage {
         page.click(submitOneClickOrderFormButton);
     }
 
-    public String getFormOneClickOrderSuccessfullMessage(){
+    public String getFormOneClickOrderSuccessfullMessage() {
         return page.innerText(formOneClickOrderSuccessfullMessage);
     }
 }

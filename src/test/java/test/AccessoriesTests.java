@@ -10,9 +10,19 @@ import util.DataProvider;
 import java.io.IOException;
 
 
-public class AccessoriesTests extends CommonCondition{
+public class AccessoriesTests extends CommonCondition {
+    @org.testng.annotations.DataProvider
+    private Object[] getAccessoriesTypeData() throws IOException {
+        return DataProvider.read("accessoriesProductType");
+    }
+
+    @org.testng.annotations.DataProvider
+    private Object [] getAccessoriesColorData() throws IOException {
+        return DataProvider.read("accessoriesProductColor");
+    }
+
     @Test
-    public void CheckSortFirstPopular(){
+    public void CheckSortFirstPopular() {
         getCatalogAccessoriesPage().openPage();
         getCatalogPage().clickSortButton();
         getCatalogPage().clickSortByName(Sort.SortCases.FIRST_POPULAR);
@@ -30,21 +40,11 @@ public class AccessoriesTests extends CommonCondition{
     }
 
     @Test(dataProvider = "getAccessoriesColorData")
-    public void checkCheckCorrectAccessoriesColour(String accessoriesColor){
+    public void checkCheckCorrectAccessoriesColour(String accessoriesColor) {
         getCatalogAccessoriesPage().openPage();
         getCatalogPage().ClickFilterByName(accessoriesColor);
         getCatalogPage().clickMoreInfoOfProduct();
 
         assertThat(getProductPage().getProductColor()).contains(accessoriesColor);
-    }
-
-    @org.testng.annotations.DataProvider
-    public Object[] getAccessoriesTypeData() throws IOException {
-        return DataProvider.read("accessoriesProductType");
-    }
-
-    @org.testng.annotations.DataProvider
-    public Object [] getAccessoriesColorData() throws IOException {
-        return DataProvider.read("accessoriesProductColor");
     }
 }

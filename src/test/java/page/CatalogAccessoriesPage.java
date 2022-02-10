@@ -12,7 +12,8 @@ public class CatalogAccessoriesPage extends CatalogPage implements GetListProduc
 
     public CatalogAccessoriesPage(Page page) {
         super(page);
-        this.page = page; }
+        this.page = page;
+    }
 
     public void openPage() {
         page.navigate(BASE_URL);
@@ -22,7 +23,7 @@ public class CatalogAccessoriesPage extends CatalogPage implements GetListProduc
         List<Product> productsList = createListProducts();
         int index = 0;
 
-        for(Product product : productsList){
+        for(Product product : productsList) {
             setProductName(product, index);
             setProductPrice(product, index);
 

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortTests extends CommonCondition{
+public class SortTests extends CommonCondition {
     @Test
     public void CheckSortLowestFirst() {
         getCatalogWatchesPage().openPage();

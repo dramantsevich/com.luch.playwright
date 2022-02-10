@@ -12,8 +12,9 @@ public class CartPage {
 
     private String listProducts = "#basket_items > tbody > tr";
     private String errorMessage = "p >> font";
+    private String totalSum = "#allSum_FORMATED";
 
-    public CartPage(Page page){
+    public CartPage(Page page) {
         this.page = page;
     }
 
@@ -23,18 +24,18 @@ public class CartPage {
         return page.querySelectorAll(listProducts);
     }
 
-    public String getProductInCartByUrl(Product product){
+    public String getProductInCartByUrl(Product product) {
         return page.getAttribute("td > .bx_ordercart_itemtitle > a[href ='" +
                 product.getProductURL() + "']", "href");
     }
 
-    public void addMoreProductQuantity(Product product){
+    public void addMoreProductQuantity(Product product) {
         page.click("//td[@class='item td-name']//a[@href='" +
                 product.getProductURL() + "']/ancestor::td/following-sibling::td[@class='custom td-count']//a[@class='plus']");
     }
 
     public int getTotalSum() {
-        String price = page.innerText("#allSum_FORMATED").replaceAll("\\s+", "");
+        String price = page.innerText(totalSum).replaceAll("\\s+", "");
 
         Pattern pattern = Pattern.compile("^[\\d]*");
         Matcher matcher = pattern.matcher(price);
@@ -55,12 +56,12 @@ public class CartPage {
                 "value"));
     }
 
-    public void clickDeleteButtonByProduct(Product product){
+    public void clickDeleteButtonByProduct(Product product) {
         page.click("//td[@class='item td-name']//a[@href='" +
                 product.getProductURL() + "']/ancestor::td/following-sibling::td[@class='custom td-count']/a[@class='delete__link']");
     }
 
-    public String getEmptyCartMessage(){
+    public String getEmptyCartMessage() {
         return page.innerText(errorMessage);
     }
 }

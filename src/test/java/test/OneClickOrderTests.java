@@ -7,8 +7,12 @@ import service.UserCreator;
 import static org.testng.Assert.*;
 
 public class OneClickOrderTests extends CommonCondition {
+    private void openPageAndClickToWatchesOneClickOrder() {
+        getMainPage().clickWatchesToOneClickOrder(1);
+    }
+
     @Test
-    public void checkCorrectOneClickOrder(){
+    public void checkCorrectOneClickOrder() {
         User testUser = UserCreator.userForOnceClickOrder();
         String expectedMessage = "Your message was sent successfully";
 
@@ -20,7 +24,7 @@ public class OneClickOrderTests extends CommonCondition {
     }
 
     @Test
-    public void checkValidationErrorMessageIfNameIsEmpty(){
+    public void checkValidationErrorMessageIfNameIsEmpty() {
         User testUserWithoutName = UserCreator.userForOneClickOrderWithoutName();
 
         openPageAndClickToWatchesOneClickOrder();
@@ -29,15 +33,11 @@ public class OneClickOrderTests extends CommonCondition {
     }
 
     @Test
-    public void checkValidationErrorMessageIfPhoneIsEmpty(){
+    public void checkValidationErrorMessageIfPhoneIsEmpty() {
         User testUserWithoutName = UserCreator.userForOneClickOrderWithoutPhone();
 
         openPageAndClickToWatchesOneClickOrder();
         getMainPage().inputClientNameField(testUserWithoutName);
         getMainPage().submitFormOneClickOrder();
-    }
-
-    private void openPageAndClickToWatchesOneClickOrder() {
-        getMainPage().clickWatchesToOneClickOrder(1);
     }
 }

@@ -14,12 +14,12 @@ public class SearchPage {
 
     public void openPage() { page.navigate(BASE_URL); }
 
-    public void enterSearchInput(String string){
+    public void enterSearchInput(String string) {
         page.type(searchInput, string);
         page.click(submitButton);
     }
 
-    public void goToProduct(){
+    public void goToProduct() {
         page.click(linkToProduct);
     }
 }

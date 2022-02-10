@@ -7,7 +7,17 @@ import util.DataProvider;
 
 import java.io.IOException;
 
-public class FilterTests extends CommonCondition{
+public class FilterTests extends CommonCondition {
+    @org.testng.annotations.DataProvider
+    private Object[] getTypeFilterData() throws IOException {
+        return DataProvider.read("typeFilter");
+    }
+
+    @org.testng.annotations.DataProvider
+    private Object [] getMovementFilterData() throws IOException {
+        return DataProvider.read("movementFilter");
+    }
+
     @Test(dataProvider = "getTypeFilterData")
     public void checkCorrectTypeFilter(String typeName) {
         getCatalogWatchesPage().openPage();
@@ -25,15 +35,5 @@ public class FilterTests extends CommonCondition{
         getCatalogPage().clickMoreInfoOfProduct();
 
         assertThat(getProductPage().getProductMovementType()).contains(movementName);
-    }
-
-    @org.testng.annotations.DataProvider
-    public Object[] getTypeFilterData() throws IOException {
-        return DataProvider.read("typeFilter");
-    }
-
-    @org.testng.annotations.DataProvider
-    public Object [] getMovementFilterData() throws IOException {
-        return DataProvider.read("movementFilter");
     }
 }
