@@ -20,6 +20,8 @@ public class CatalogPage {
     private String itemPriceList = "//a/div/div/div/div/div[@class='price']/span";
     private String itemArticleList = "//a/div/div/div[@class='article']";
     private String moreInfoButton = "text=More info";
+    private String sortByName = "a:has-text('%s')";
+    private String filterByName = "label:has-text('%s')";
 
     public CatalogPage(Page page) { this.page = page; }
 
@@ -28,7 +30,7 @@ public class CatalogPage {
     }
 
     public void clickSortByName(Sort.SortCases sortName) {
-        page.click("a:has-text('" + sortName.getValue() + "')");
+        page.click(String.format(sortByName, sortName.getValue()));
     }
 
     protected List<Product> createListProducts() {
@@ -76,7 +78,7 @@ public class CatalogPage {
     }
 
     public void ClickFilterByName(String filterName) {
-        page.click("label:has-text('" + filterName + "')");
+        page.click(String.format(filterByName, filterName));
         page.waitForTimeout(750);
     }
 

@@ -21,6 +21,8 @@ public class OrderPage {
     private String errorMessage = "//div/p/font[@class='errortext']";
     private String orderFormContent = "#order_form_content";
     private String goToPaymentPageButton = "#ORDER_CONFIRM_BUTTON";
+    private String cityFromDropDown = "//div[contains(@class,'dropdown-item bx-ui-sls-variant bx-ui-sls-variant-active')]/span[contains(text(),'%s')]";
+    private String chooseService = "//div[contains(text(),'%s')]//ancestor::div[@class='input radio']/input";
 
     public OrderPage(Page page){ this.page = page; }
 
@@ -57,18 +59,18 @@ public class OrderPage {
     }
 
     private void clickCityFromDropDownList(String city) {
-        page.click("//div[contains(@class,'dropdown-item bx-ui-sls-variant bx-ui-sls-variant-active')]/span[contains(text(),'"+ city +"')]");
+        page.click(String.format(cityFromDropDown, city));
         page.waitForTimeout(500);
     }
 
     public void chooseDeliveryService(Order.DeliveryService deliveryService) {
-        page.check("//div[contains(text(),'"+ deliveryService.getValue() +"')]//ancestor::div[@class='input radio']/input");
-        page.isChecked("//div[contains(text(),'"+ deliveryService.getValue() +"')]//ancestor::div[@class='input radio']/input");
+        page.check(String.format(chooseService, deliveryService.getValue()));
+        page.isChecked(String.format(chooseService, deliveryService.getValue()));
     }
 
     public void choosePaymentSystem(Order.PaymentSystem paymentSystem) {
-        page.check("//div[contains(text(),'"+ paymentSystem.getValue() +"')]//ancestor::div[@class='input radio']/input");
-        page.isChecked("//div[contains(text(),'"+ paymentSystem.getValue() +"')]//ancestor::div[@class='input radio']/input");
+        page.check(String.format(chooseService, paymentSystem.getValue()));
+        page.isChecked(String.format(chooseService, paymentSystem.getValue()));
         page.waitForTimeout(500);
     }
 

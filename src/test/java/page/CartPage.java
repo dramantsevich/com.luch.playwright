@@ -13,6 +13,10 @@ public class CartPage {
     private String listProducts = "#basket_items > tbody > tr";
     private String errorMessage = "p >> font";
     private String totalSum = "#allSum_FORMATED";
+    private String productInCart = "td > .bx_ordercart_itemtitle > a[href ='%s']";
+    private String moreProductQuantity = "//td[@class='item td-name']//a[@href='%s']/ancestor::td/following-sibling::td[@class='custom td-count']//a[@class='plus']";
+    private String quantityCount = "//td[@class='item td-name']//a[@href='%s']/ancestor::td/following-sibling::td[@class='custom td-count']//input[@type='hidden']";
+    private String deleteButton = "//td[@class='item td-name']//a[@href='%s']/ancestor::td/following-sibling::td[@class='custom td-count']/a[@class='delete__link']";
 
     public CartPage(Page page) {
         this.page = page;
@@ -25,13 +29,11 @@ public class CartPage {
     }
 
     public String getProductInCartByUrl(Product product) {
-        return page.getAttribute("td > .bx_ordercart_itemtitle > a[href ='" +
-                product.getProductURL() + "']", "href");
+        return page.getAttribute(String.format(productInCart, product.getProductURL()), "href");
     }
 
     public void addMoreProductQuantity(Product product) {
-        page.click("//td[@class='item td-name']//a[@href='" +
-                product.getProductURL() + "']/ancestor::td/following-sibling::td[@class='custom td-count']//a[@class='plus']");
+        page.click(String.format(moreProductQuantity, product.getProductURL()));
     }
 
     public int getTotalSum() {
@@ -51,14 +53,11 @@ public class CartPage {
     }
 
     public int getQuantityCountByProduct(Product product) {
-        return Integer.parseInt(page.getAttribute("//td[@class='item td-name']//a[@href='" +
-                        product.getProductURL() + "']/ancestor::td/following-sibling::td[@class='custom td-count']//input[@type='hidden']",
-                "value"));
+        return Integer.parseInt(page.getAttribute(String.format(quantityCount, product.getProductURL()), "value"));
     }
 
     public void clickDeleteButtonByProduct(Product product) {
-        page.click("//td[@class='item td-name']//a[@href='" +
-                product.getProductURL() + "']/ancestor::td/following-sibling::td[@class='custom td-count']/a[@class='delete__link']");
+        page.click(String.format(deleteButton, product.getProductURL()));
     }
 
     public String getEmptyCartMessage() {
